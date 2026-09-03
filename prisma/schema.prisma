@@ -1,0 +1,79 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                 String             @id @default(cuid())
+  name               String
+  email              String             @unique
+  passwordHash       String
+  role               String             @default("USER") // "ADMIN" | "USER"
+  publicIdentityType String             @default("USERNAME") // "USERNAME" | "ALIAS"
+  alias              String?
+  ethicsAcceptedAt   DateTime           @default(now())
+  createdAt          DateTime           @default(now())
+  updatedAt          DateTime           @updatedAt
+
+  visibility         ProfileVisibility?
+  questions          Question[]
+  answers            Answer[]
+  comments           Comment[]
+}
+
+model ProfileVisibility {
+  id               String   @id @default(cuid())
+  userId           String   @unique
+  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  showEmail        Boolean  @default(false)
+  linkedinUrl      String?
+  genericSocialUrl String?
+  websiteUrl       String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model Question {
+  id                 String   @id @default(cuid())
+  slug               String   @unique
+  title              String
+  summary            String
+  content            String
+  category           String
+  intersectionNumber Int?
+  authorId           String
+  author             User     @relation(fields: [authorId], references: [id])
+  answers            Answer[]
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}
+
+model Answer {
+  id         String    @id @default(cuid())
+  content    String
+  questionId String
+  question   Question  @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  authorId   String
+  author     User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  comments   Comment[]
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+}
+
+model Comment {
+  id        String    @id @default(cuid())
+  content   String
+  answerId  String
+  answer    Answer    @relation(fields: [answerId], references: [id], onDelete: Cascade)
+  authorId  String
+  author    User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  parentId  String?
+  parent    Comment?  @relation("CommentReplies", fields: [parentId], references: [id], onDelete: Cascade)
+  replies   Comment[] @relation("CommentReplies")
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
