@@ -4,15 +4,17 @@ import bcrypt from "bcryptjs";
 const prisma = new PrismaClient();
 
 async function main() {
-  console.log("🌱 Iniciando siembra de datos científicos TECD...");
+  console.log("🌱 Iniciando sincronización de artículos de consenso científico TECD...");
 
-  // 1. Crear usuario Administrador / Desarrollador Principal
+  // 1. Administrador TECD (sin nombres personales, identidad institucional)
   const adminPassword = await bcrypt.hash("AdminTECD2026!", 12);
   const admin = await prisma.user.upsert({
     where: { email: "admin@tecd.science" },
-    update: {},
+    update: {
+      name: "Comité Científico TECD",
+    },
     create: {
-      name: "Dr. Alan V.",
+      name: "Comité Científico TECD",
       email: "admin@tecd.science",
       passwordHash: adminPassword,
       role: "ADMIN",
@@ -70,112 +72,114 @@ async function main() {
     },
   });
 
-  // 3. Insertar Artículos Fundamentales de la TECD (extraídos del documento canónico)
+  // 3. 6 Artículos Consensuados del Documento Canónico
   const articles = [
     {
-      title: "El Universo como Red de Información Binaria (It from Bit)",
+      title: "El Espaciotiempo como Propiedad Emergente e It from Bit",
       slug: "universo-red-informacion-binaria-it-from-bit",
       category: "Ontología de Noción Única",
       intersectionNumber: 1,
       summary:
-        "¿Y si el espacio, el tiempo y la materia no son fundamentales sino propiedades emergentes de diferencias binarias elementales? Wheeler y la emergencia informacional.",
-      content: `Imagina que el universo no está hecho de partículas físicas, ni de un "tejido" continuo de espacio y tiempo. Según esta idea, en su nivel más profundo y microscópico, lo único que existe es pura información binaria: el contraste o la diferencia entre una cosa y otra (como el 1 y el 0 en el código de una computadora). Todo lo que tocamos y medimos —el espacio, el tiempo, la masa y la energía— no existe realmente a esa escala. Son solo un efecto secundario (una propiedad emergente) que aparece cuando miles de millones de estas diferencias básicas se agrupan. Es exactamente igual a cómo un conjunto de píxeles cuadrados individuales crea la ilusión de una fotografía fluida y continua solo cuando los miras desde lejos.
+        "¿Emerge el espaciotiempo de estructuras cuánticas de entrelazamiento? De la conjetura \"It from bit\" a la dinámica fundamental que genera geometría, materia y tiempo para observadores macroscópicos.",
+      content: `En varias líneas de investigación en gravedad cuántica y teoría de la información, el espaciotiempo aparece no como un ingrediente necesariamente fundamental, sino como una propiedad emergente de estructuras cuánticas más profundas, especialmente de patrones de tensión y entrelazamiento.
 
-Esta perspectiva se alinea fuertemente con la filosofía de la ciencia, la "física digital" y la teoría de la información. Conecta directamente con la famosa idea It from bit (Todo surge del bit) del físico teórico John Archibald Wheeler, la cual sugiere que el universo es fundamentalmente información, y la materia es solo una manifestación de esa información. Actualmente, en la búsqueda de una teoría de la gravedad cuántica, muchos físicos sostienen que el espaciotiempo no es un componente fundamental de la realidad, sino algo que "emerge" de redes de información cuántica mucho más abstractas.
+En ese contexto, la idea de Wheeler de "it from bit" sigue siendo una guía conceptual influyente: sugiere que la información desempeña un papel constitutivo en la física fundamental. Sin embargo, no existe consenso en que la realidad esté hecha literalmente de bits binarios ni en que el universo sea, en sentido estricto, una computadora.
+
+Lo que sí parece consolidarse es la posibilidad de que conceptos clásicos como geometría, localidad e incluso ciertos aspectos del tiempo surjan colectivamente a partir de grados de libertad cuánticos más básicos.
 
 ### Pregunta para el debate:
-Si el espacio, el tiempo y la materia son solo una ilusión macroscópica creada por la acumulación de simples "diferencias", ¿qué o quién está procesando esa información base para que nosotros la experimentemos como un universo sólido, continuo y tangible?`,
+¿Qué dinámica física fundamental da lugar a que la información cuántica adopte una descripción efectiva como geometría, materia y tiempo para observadores macroscópicos?`,
     },
     {
-      title: "El Tiempo como Medida Entrópica y la Medición Fluida",
+      title: "La Flecha del Tiempo, Decoherencia Cuántica y la Emergencia de la Clasicidad",
       slug: "tiempo-medida-entropica-medicion-fluida",
-      category: "Categorías Interconectables y Tiempo Fluidificado",
+      category: "Tiempo Fluidificado",
       intersectionNumber: 4,
       summary:
-        "Desafiando la Interpretación de Copenhague: el colapso no es instantáneo sino una transición suave gobernada por la termodinámica y el Bayesianismo Cuántico (QBism).",
-      content: `Imagina que el tiempo y la realidad no funcionan como un interruptor de luz (encendido o apagado), sino como un regulador de intensidad. El tiempo no es un reloj universal de fondo que hace "tic-tac", sino simplemente una medida del desorden (entropía). Sabemos que un estado pertenece al "futuro" respecto a otro simplemente porque es más caótico o desordenado, no porque el reloj haya avanzado.
+        "El tiempo no se identifica simplemente con la entropía: decoherencia, irreversibilidad gradual y la transición dinámica hacia resultados clásicos frente a la ontología del colapso.",
+      content: `El tiempo no se identifica simplemente con la entropía, pero la flecha macroscópica del tiempo parece estar estrechamente ligada a procesos irreversibles, al aumento de entropía y, en algunos enfoques cuánticos, al crecimiento de correlaciones y entrelazamiento.
 
-A nivel cuántico, esto significa que observar o "medir" un sistema no obliga a la realidad a tomar una decisión instantánea y definitiva. En lugar de un corte brusco donde una posibilidad se vuelve 100% real y el resto se esfuma, ocurre una transición suave. Es como una balanza que se inclina gradualmente: a medida que interactuamos con el sistema, una opción se vuelve progresivamente más probable y nítida, mientras que las otras se desvanecen de forma fluida.
+En mecánica cuántica, la medición no siempre se interpreta como un colapso físico instantáneo; con frecuencia se modela como un proceso dinámico en el que la decoherencia, la interacción con el entorno y la amplificación de registros hacen que surjan resultados efectivamente clásicos.
 
-Este texto desafía directamente a la "Interpretación de Copenhague", la visión clásica de la mecánica cuántica que sostiene que medir algo causa un "colapso" instantáneo y violento de las probabilidades. La idea de una medición como "actualización fluida" se conecta con enfoques físicos y filosóficos más modernos (como la decoherencia cuántica o el Bayesianismo Cuántico / QBism), donde la realidad es un flujo de información que se va ajustando. Asimismo, definir el tiempo a través de la entropía relativa se apoya en la termodinámica, argumentando que la famosa "flecha del tiempo" (la sensación de que el tiempo fluye hacia adelante) es solo un efecto estadístico.
+En ese marco, un suceso puede considerarse "ocurrido" cuando su resultado se vuelve estable, repetible y prácticamente irreversible por haber quedado registrado en muchos grados de libertad, aunque el estatus ontológico último de ese proceso sigue siendo una cuestión abierta.
+
+En suma, el consenso científico permite hablar de emergencia gradual de irreversibilidad y de clasicidad, pero no de que el tiempo "sea" solo entropía ni de que el problema de la medición esté resuelto de forma definitiva.
 
 ### Pregunta para el debate:
-Si la realidad nunca se "congela" de golpe mediante un colapso y los eventos son simplemente probabilidades que se inclinan gradualmente como un fluido, ¿en qué punto exacto, si es que existe alguno, podemos afirmar que un suceso realmente "ya ocurrió" y se volvió irreversible?`,
+¿Es el flujo direccional del tiempo y la consolidación de nuestra realidad clásica una característica fundamental y objetiva del universo, o son simplemente ilusiones macroscópicas que emergen de la pérdida de información, la decoherencia cuántica y el aumento irreversible de la entropía?`,
     },
     {
-      title: "Ecosistemas de Categorías y Traductores Functoriales",
+      title: "Teoría de Categorías, Functores y el Debate del Realismo Estructural",
       slug: "ecosistemas-categorias-traductores-functoriales",
       category: "Ontología de Noción Única",
       intersectionNumber: 1,
       summary:
-        "La Teoría de Categorías como puente unificador: el Entorno, la Información Latente y la Acción interconectados por functores que preservan la estructura.",
-      content: `Imagina que, en lugar de estudiar las cosas como piezas aisladas e independientes, este modelo trata la realidad como diferentes "ecosistemas" o redes, llamados Categorías. En este caso, tenemos tres ecosistemas principales: el mundo que nos rodea (Entorno), los datos o patrones ocultos (Información Latente) y los eventos o movimientos (Acción).
+        "La teoría de categorías como lenguaje riguroso de correspondencias entre entorno, información y acción: functores que preservan estructura frente a la ontología material.",
+      content: `La teoría de categorías puede usarse como un lenguaje matemático para representar sistemas, transformaciones y correspondencias entre distintos niveles de descripción —por ejemplo, entorno, información y acción— de manera rigurosa y coherente.
 
-La clave de este modelo son los functores, que actúan como traductores universales perfectos entre estos mundos. Si descubres un patrón, regla o "mapa" de relaciones en el Entorno, el functor lo traduce matemáticamente para que aplique de forma natural a la Acción o a la Información. Es como si una canción escrita en una partitura musical se tradujera automáticamente a los pasos exactos de una coreografía, manteniendo intacta la misma estructura matemática de fondo, sin perder ningún detalle en la traducción.
+En ese contexto, los functores no son traductores perfectos de "todo a todo", sino aplicaciones que preservan estructuras bien definidas entre categorías y permiten comparar modelos, expresar equivalencias parciales o transferir resultados entre dominios.
 
-El texto se fundamenta en la Teoría de Categorías, una rama sumamente abstracta y poderosa de las matemáticas modernas desarrollada a mediados del siglo XX (principalmente por Saunders Mac Lane y Samuel Eilenberg). Su propósito original era unificar distintas ramas de las matemáticas demostrando que comparten estructuras equivalentes.
+Desde el lado filosófico, esta clase de formalismo es compatible con lecturas estructuralistas o relacionales de la física, donde la estructura matemática de una teoría recibe un papel central. Pero la literatura no converge en que eso elimine los objetos materiales ni en que la matemática agote por completo la ontología física; varias revisiones sostienen que las versiones radicales del realismo estructural siguen siendo discutidas, mientras que las versiones moderadas conservan algún papel para objetos, campos o tipos físicos.
 
-En lugar de enfocarse en qué son las cosas (los objetos), esta teoría se enfoca en cómo se relacionan (los morfismos). Hoy en día, es una herramienta fundamental en la informática teórica, la física cuántica y el diseño de sistemas complejos. Al aplicar este marco a un modelo físico o filosófico, el autor garantiza que todo el sistema sea rigurosamente coherente: ningún componente puede existir en el vacío, y cualquier cambio en la estructura del entorno tiene un reflejo matemáticamente exacto en la información y en la acción.
+Que un marco matemático describa la realidad en términos relacionales no demuestra que la realidad fundamental sea solo relaciones ni que la materia sea ilusoria. La física contemporánea da buenas razones para tomar la estructura muy en serio, pero no ofrece consenso a favor de eliminar por completo objetos, campos o clases materiales del inventario ontológico.
 
 ### Pregunta para el debate:
-Si cualquier elemento del entorno, pensamiento (información) o movimiento (acción) puede traducirse matemáticamente de un ecosistema a otro de forma impecable, ¿significa esto que la naturaleza fundamental de la realidad es puramente relacional (solo importan las conexiones matemáticas) y que la "materia" en sí misma es solo una ilusión?`,
+¿Demuestra el formalismo relacional de la teoría de categorías que la realidad fundamental consiste únicamente en estructuras matemáticas, o siguen siendo necesarios los objetos y campos materiales en el inventario ontológico de la física?`,
     },
     {
-      title: "Invariantes Topológicas y Robustez Fuera de Distribución (OOD)",
+      title: "Robustez Fuera de Distribución (OOD): Adaptación Iterativa vs. Razonamiento Deductivo",
       slug: "invariantes-topologicas-robustez-ood",
-      category: "Medición por Contraste y OOD Repetitivo",
+      category: "Medición por Contraste",
       intersectionNumber: 2,
       summary:
-        "Frente al caos inesperado, la estadística iterativa y la inferencia activa filtran el ruido transitorio revelando la topología matemática subyacente.",
-      content: `Imagina que un sistema o una inteligencia artificial se enfrenta a un escenario completamente nuevo, extraño y caótico para el que nunca fue entrenado (esto es lo que significa "Fuera de Distribución" o OOD). En lugar de intentar ser brillante y adivinar de antemano cómo resolver ese misterio, el sistema adopta una estrategia más rústica pero efectiva: repetir su proceso de evaluación una y otra vez en un ciclo continuo.
+        "Incertidumbre, representaciones y topología: cómo enfrentan los sistemas inteligentes escenarios desconocidos combinando análisis, interacción y autocorrección rápida.",
+      content: `La robustez ante escenarios OOD (fuera de distribución) no parece depender de una capacidad mágica para predecir cualquier novedad, sino de combinar buenas representaciones, estimación de incertidumbre, adaptación iterativa y, en algunos casos, estructura topológica específica.
 
-Al hacer esto miles de veces introduciendo cierta aleatoriedad, las distracciones, los datos engañosos y los errores (el "ruido" efímero) terminan anulándose entre sí porque cambian constantemente. Lo único que no cambia y se mantiene firme a través de todas las repeticiones es la estructura central y verdadera del problema (la "invariante topológica"). Es como tomar mil fotografías nocturnas con mucho "grano" o ruido visual de una calle: al superponer todas las imágenes, las personas y los autos en movimiento se borran, y lo único que queda perfectamente nítido es la forma inamovible de los edificios.
-
-Esta idea cruza la frontera entre la inteligencia artificial (Machine Learning), la estadística y la topología matemática. Uno de los mayores problemas actuales en la IA es su fragilidad: los modelos colapsan cuando se enfrentan a datos fuera de su distribución original (OOD). El enfoque tradicional intenta enseñar a la máquina a "predecir" o razonar lo desconocido. Sin embargo, esta visión propone que la robustez real proviene de la estadística iterativa (similar a los métodos de Monte Carlo o la Inferencia Activa en neurociencia). En lugar de predecir el caos, el sistema confía en que, matemáticamente, los aspectos transitorios de cualquier entorno eventualmente se promedian a cero, dejando al descubierto la topología (la "forma" matemática fundamental e inalterable) de la realidad que subyace al ruido.
+La evidencia científica no sugiere que razonar antes de actuar sea una pérdida de tiempo, sino que los sistemas más robustos probablemente necesiten análisis, interacción y autocorrección rápida en conjunto, no como alternativas excluyentes.
 
 ### Pregunta para el debate:
-Si la capacidad de sobrevivir a lo desconocido no depende de la genialidad para predecir el futuro, sino de la velocidad y resistencia para iterar hasta que la verdad se revele, ¿estamos perdiendo el tiempo intentando crear inteligencias artificiales que "razonen" lógicamente antes de actuar, en lugar de sistemas que simplemente interactúen y se autocorrijan a velocidades masivas?`,
+Si la robustez de un sistema ante escenarios completamente desconocidos (fuera de distribución) no depende de su capacidad de razonar lógicamente antes de actuar, sino de su velocidad de iteración y resistencia para autocorregirse hasta que la estructura invariante del problema emerja del ruido, ¿deberíamos reorientar la investigación en IA hacia sistemas de interacción masiva y autocorrección rápida en lugar de perfeccionar el algoritmo deductivo previo?`,
     },
     {
-      title: "Métricas Diferenciables vs. Escalares Difusos (Objetivos SMART)",
+      title: "Métricas de Optimización vs. Bienestar Humano: Los Límites de los Objetivos Cuantificables",
       slug: "metricas-diferenciables-escalares-difusos-smart",
-      category: "Atracción, Control y Objetivos SMART",
+      category: "Atracción y SMART",
       intersectionNumber: 3,
       summary:
-        "Del deseo abstracto a la pendiente matemática: fusión entre metas SMART, optimización de gradiente en Deep Learning y cálculo diferencial cognitivo.",
-      content: `Imagina que estás usando un GPS y le gritas: "¡Llévame a un lugar tranquilo!". El dispositivo se queda paralizado porque no sabe qué significa "tranquilo" ni hacia dónde girar; carece de coordenadas claras. En términos matemáticos, eso es un "escalar difuso sin gradiente": una idea vaga que no ofrece una dirección paso a paso para mejorar.
+        "Formalización precisa en IA frente a la complejidad del bienestar humano: por qué una vida plena no puede reducirse a una sola variable escalar optimizable.",
+      content: `En inteligencia artificial, los sistemas aprenden mejor cuando el objetivo está formalizado de manera precisa y optimizable; en conducta humana, traducir deseos vagos en metas concretas y revisables suele facilitar el cambio; pero en bienestar humano ninguna métrica única captura por completo una vida buena, porque el bienestar incluye experiencia, satisfacción, significado y relaciones, además de estar modulado por expectativas y contexto.
 
-Lo mismo ocurre con el bienestar personal o el diseño de sistemas de inteligencia artificial. Desear "estabilidad" o "dormir más" es demasiado abstracto. Sin embargo, si transformas ese deseo en una meta hiperespecífica, medible y con un límite de tiempo (como "lograr que las fluctuaciones de mi ritmo cardíaco sean menores al 1% durante las próximas 10,000 horas"), estás creando un mapa exacto. A esto se le llama una "métrica diferenciable": un camino donde el sistema puede calcular en cada instante si se está acercando o alejando de la meta, permitiéndole ajustar y corregir el rumbo automáticamente sin confundirse.
-
-Este planteamiento fusiona la psicología del comportamiento (la famosa metodología de metas SMART: Específicas, Medibles, Alcanzables, Relevantes y Temporales) con la arquitectura del aprendizaje profundo (Deep Learning) y el cálculo diferencial. En inteligencia artificial, una red neuronal solo puede aprender y mejorar si su objetivo tiene un "gradiente"; es decir, una pendiente matemática que le indique hacia dónde "descender" para minimizar los errores. Al aplicar esta lógica ingenieril a la psicología humana, el texto argumenta que gran parte de nuestra frustración no nace de la incapacidad para ser felices, sino de un error de codificación: definimos nuestras metas emocionales de forma tan poética y ambigua que nuestro cerebro (o el sistema de hábitos) es literalmente incapaz de optimizarlas.
+En síntesis, la "cuantificación implacable" no parece ser ni un error total ni la única vía válida: las métricas ayudan a orientar la acción, pero el consenso científico indica que el bienestar humano pierde precisión —y a veces sentido— cuando se lo trata como si fuera una sola variable optimizable.
 
 ### Pregunta para el debate:
-Si traducimos la felicidad, la paz mental y el bienestar humano en métricas rígidamente cuantificables y optimizables, ¿corremos el riesgo de vaciar la vida de su significado cualitativo, o es esta "cuantificación implacable" la única forma práctica y real de dejar de quejarnos y comenzar a mejorar de verdad?`,
+Si la robustez de un sistema —ya sea una red neuronal o un ser humano— no depende de su capacidad para predecir el caos, sino de iterar y autocorregirse hasta que la estructura invariante del problema emerja del ruido, ¿deberíamos reemplazar el ideal de "planificar metas perfectas" (SMART) por un modelo de "exploración masiva y corrección continua" donde la métrica óptima se descubre dinámicamente, no se define de antemano?`,
     },
     {
-      title: "Ingeniería Disipativa y Principio de Mínima Acción",
+      title: "Eficiencia Computacional, Atractores y Dinámica Fuera del Equilibrio",
       slug: "ingenieria-disipativa-principio-minima-accion",
-      category: "Síntesis Global y Límites de la Teoría Unificada",
+      category: "Síntesis Global",
       intersectionNumber: 5,
       summary:
-        "El laberinto inclinado: la computación adiabática y neuromórfica demuestran que resolver un problema es simplemente relajarse hacia el atractor de menor energía.",
-      content: `Imagina que necesitas encontrar la salida de un laberinto. El método tradicional (la "fuerza bruta") sería tener a alguien corriendo a toda velocidad, probando conscientemente cada pasillo y chocando contra las paredes hasta hallar el final; esto equivale a un procesador moderno haciendo millones de cálculos por segundo hasta recalentarse.
+        "De la computación adiabática y neuromórfica a la cognición viva: cómo balancear la convergencia a atractores de baja disipación con la flexibilidad adaptativa de sistemas fuera del equilibrio.",
+      content: `La eficiencia cognitiva y computacional no suele depender de aplicar más fuerza bruta, sino de organizar la arquitectura, la codificación y la dinámica del sistema para que resuelva problemas con el menor coste energético compatible con la precisión y la flexibilidad.
 
-Este modelo propone algo radicalmente distinto: inclinar el laberinto y verter agua en el inicio. El agua no "piensa" ni procesa opciones de forma activa; simplemente fluye hacia abajo, buscando el punto de menor resistencia por gravedad, y encuentra la salida por sí sola. A nivel cognitivo y computacional, esto significa que la verdadera eficiencia no se logra pensando o calculando más rápido, sino estructurando el problema para que la respuesta aparezca como el estado de descanso natural del sistema. La solución no se persigue; el sistema simplemente se "relaja" y cae hacia ella.
-
-Este concepto es la base de las nuevas fronteras en la tecnología, como la computación cuántica adiabática y el hardware neuromórfico (circuitos que imitan al cerebro). Nuestras computadoras clásicas, basadas en transistores, obligan a la energía a moverse en patrones rígidos, disipando cantidades masivas de calor en el proceso.
-
-Sin embargo, el cerebro humano es capaz de reconocer rostros, comprender lenguaje y crear arte consumiendo apenas unos 20 vatios de energía (lo mismo que una bombilla de luz tenue). Esto es posible porque el cerebro funciona bajo principios de termodinámica y el "principio de mínima acción". Las redes neuronales no calculan la realidad empujando datos por la fuerza, sino que sus conexiones se reconfiguran hasta alcanzar un "atractor", que es su estado físico de mayor confort y mínimo gasto energético. La solución al problema es literalmente el punto donde el cerebro descansa.
+En algunos modelos neuronales y dispositivos físicos, esto puede describirse como convergencia hacia atractores o estados de baja disipación; sin embargo, ni el cerebro ni los sistemas inteligentes reales funcionan como mecanismos pasivos en reposo, sino como sistemas adaptativos, activos y alejados del equilibrio.
 
 ### Pregunta para el debate:
-Si la física y la neurociencia nos demuestran que la máxima brillantez y eficiencia ocurren cuando un sistema simplemente fluye hacia un estado de menor resistencia y desgaste, ¿deberíamos reconsiderar nuestra cultura moderna del trabajo y el aprendizaje, que idolatra el estrés mental, el esfuerzo bruto y la hiperactividad constante?`,
+¿Es la búsqueda de la máxima eficiencia energética y computacional (mediante estados de mínima disipación) fundamentalmente incompatible con el desarrollo de una inteligencia verdaderamente adaptativa, dado que la cognición biológica exige operar en estados dinámicos y alejados del equilibrio termodinámico?`,
     },
   ];
 
   for (const art of articles) {
     const q = await prisma.question.upsert({
       where: { slug: art.slug },
-      update: {},
+      update: {
+        title: art.title,
+        summary: art.summary,
+        content: art.content,
+        category: art.category,
+        intersectionNumber: art.intersectionNumber,
+      },
       create: {
         title: art.title,
         slug: art.slug,
@@ -199,7 +203,7 @@ Si la física y la neurociencia nos demuestran que la máxima brillantez y efici
             questionId: q.id,
             authorId: userElena.id,
             content:
-              "Desde la formulación de la TECD, no se requiere un 'observador consciente central' que procese las diferencias binarias. La red categorial se auto-resuelve termodinámicamente a través de functores de coherencia local. El espaciotiempo es el tensor de acoplamiento entre los contrastes locales disipados hacia el fondo térmico.",
+              "Desde la física de la información, no se requiere un 'observador consciente central' que procese las diferencias. La red cuántica se auto-organiza termodinámicamente a través de correlaciones y entrelazamiento local. El espaciotiempo efectivo describe la geometría que emerge de dichos grados de libertad.",
           },
         });
 
@@ -209,14 +213,14 @@ Si la física y la neurociencia nos demuestran que la máxima brillantez y efici
             answerId: answer.id,
             authorId: userMarcus.id,
             content:
-              "Excelente formulación, colega. Sin embargo, ¿cómo preservas la unitariedad si la disipación local no retiene la memoria del functor inverso?",
+              "Excelente formulación. Sin embargo, ¿cómo preservas la consistencia entre la decoherencia dinámica y los modelos de gravedad cuántica basados en tensor networks?",
           },
         });
       }
     }
   }
 
-  console.log("✅ Siembra completada con éxito. Artículos, preguntas y debates activos.");
+  console.log("✅ Siembra y sincronización de 6 artículos completada con éxito.");
 }
 
 main()

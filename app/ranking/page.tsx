@@ -11,7 +11,6 @@ import {
   Globe,
   Share2,
   Mail,
-  Zap,
   MessageSquare,
   ShieldCheck,
 } from "lucide-react";
@@ -36,23 +35,6 @@ export default async function RankingPage() {
           Puntuación calculada dinámicamente según el rigor y la repercusión de tus
           argumentos en la comunidad de la TECD.
         </p>
-      </div>
-
-      {/* FORMULA EXPLANATION CARD */}
-      <div className="glass-card rounded-3xl p-6 border border-zinc-800/80 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-        <div className="space-y-1">
-          <div className="text-xs font-bold text-teal-300 uppercase tracking-wider font-mono flex items-center gap-1.5">
-            <Zap className="w-3.5 h-3.5" />
-            <span>Fórmula Matemática de Puntuación (Score)</span>
-          </div>
-          <div className="text-zinc-200 text-xs sm:text-sm font-mono bg-zinc-950/80 px-3 py-1.5 rounded-xl border border-zinc-800 inline-block">
-            Score = (Respuestas Propias) + (Promedio de Debates que otros dejaron en tus respuestas)
-          </div>
-        </div>
-        <div className="text-[11px] text-zinc-400 max-w-xs leading-tight">
-          Premia tanto la iniciativa investigadora como la capacidad de formular
-          respuestas que susciten debates profundos entre colegas.
-        </div>
       </div>
 
       {/* TOP 3 PODIUM */}

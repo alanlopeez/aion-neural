@@ -86,8 +86,8 @@ export function AnswerEditor({ questionId }: AnswerEditorProps) {
 
   return (
     <div className="glass-card rounded-3xl p-6 border border-zinc-800/80 space-y-4">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2 text-xs">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div className="flex flex-wrap items-center gap-2 text-xs">
           <span className="text-zinc-400">Respondiendo públicamente como:</span>
           <span className="font-bold text-teal-400 bg-teal-500/10 px-2.5 py-0.5 rounded-full border border-teal-500/20">
             {authorName}
@@ -98,7 +98,7 @@ export function AnswerEditor({ questionId }: AnswerEditorProps) {
         </div>
 
         {/* Preview / Edit tab */}
-        <div className="flex items-center gap-1 bg-zinc-900/90 p-1 rounded-xl border border-zinc-800 text-xs">
+        <div className="flex items-center gap-1 bg-zinc-900/90 p-1 rounded-xl border border-zinc-800 text-xs self-start sm:self-auto">
           <button
             type="button"
             onClick={() => setIsPreview(false)}

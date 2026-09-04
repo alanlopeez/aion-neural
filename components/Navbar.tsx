@@ -7,6 +7,7 @@ import { useSession, signOut } from "next-auth/react";
 import { useTheme } from "./providers/ThemeProvider";
 import { RegisterModal } from "./auth/RegisterModal";
 import { LoginModal } from "./auth/LoginModal";
+import { MobileNav } from "./MobileNav";
 import {
   Atom,
   Trophy,
@@ -50,7 +51,7 @@ export function Navbar() {
                 <span className="font-bold text-lg tracking-tight bg-gradient-to-r from-zinc-100 via-teal-200 to-zinc-400 bg-clip-text text-transparent">
                   TECD
                 </span>
-                <span className="text-[10px] uppercase font-mono tracking-widest px-1.5 py-0.5 rounded-full bg-teal-500/10 text-teal-400 border border-teal-500/20">
+                <span className="hidden sm:inline-block text-[10px] uppercase font-mono tracking-widest px-1.5 py-0.5 rounded-full bg-teal-500/10 text-teal-400 border border-teal-500/20">
                   Blog • Aion Neural
                 </span>
               </div>
@@ -128,7 +129,7 @@ export function Navbar() {
                     {displayName.slice(0, 2).toUpperCase()}
                   </div>
                   <div className="flex flex-col text-left">
-                    <span className="font-semibold text-zinc-200 truncate max-w-[110px]">
+                    <span className="font-semibold text-zinc-200 truncate max-w-[70px] sm:max-w-[120px]">
                       {displayName}
                     </span>
                     <span className="text-[10px] text-teal-400 font-mono">
@@ -165,6 +166,12 @@ export function Navbar() {
           </div>
         </div>
       </header>
+
+      {/* Mobile Bottom Social Navigation Bar */}
+      <MobileNav
+        onOpenLogin={() => setShowLogin(true)}
+        onOpenRegister={() => setShowRegister(true)}
+      />
 
       {/* Modals */}
       <RegisterModal

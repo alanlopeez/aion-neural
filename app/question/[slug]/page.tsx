@@ -7,8 +7,8 @@ import { prisma } from "@/lib/prisma";
 import { formatDate } from "@/lib/utils";
 import { AnswerCard } from "@/components/social/AnswerCard";
 import { AnswerEditor } from "@/components/social/AnswerEditor";
+import { BackButton } from "@/components/BackButton";
 import {
-  ArrowLeft,
   Atom,
   MessageSquare,
   Sparkles,
@@ -82,13 +82,7 @@ export default async function QuestionPage({ params }: QuestionPageProps) {
     <div className="max-w-4xl mx-auto space-y-8">
       {/* Back button */}
       <div>
-        <Link
-          href="/"
-          className="inline-flex items-center gap-2 text-xs font-medium text-zinc-400 hover:text-white transition-colors"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          <span>Volver al feed de preguntas</span>
-        </Link>
+        <BackButton label="Volver al feed de preguntas" fallbackHref="/blog" />
       </div>
 
       {/* ARTICLE / QUESTION HEADER & BODY */}
@@ -98,7 +92,7 @@ export default async function QuestionPage({ params }: QuestionPageProps) {
             {question.category}
           </span>
           <div className="text-xs text-zinc-500 font-mono">
-            Publicado por {question.author.name} • {formatDate(question.createdAt)}
+            {formatDate(question.createdAt)}
           </div>
         </div>
 

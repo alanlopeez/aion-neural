@@ -3,14 +3,14 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Atom, Shield, Scale, Terminal } from "lucide-react";
+import { Atom, Shield, Scale } from "lucide-react";
 
 export function Footer() {
   const pathname = usePathname();
   if (pathname === "/") return null;
   return (
     <footer className="w-full border-t border-zinc-800/80 bg-zinc-950/70 backdrop-blur-xl mt-24 text-zinc-400 text-xs transition-colors">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 pb-24 sm:pb-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           {/* Col 1: Brand & Theory */}
           <div className="md:col-span-2 space-y-3">
@@ -56,10 +56,6 @@ export function Footer() {
                 <Shield className="w-3.5 h-3.5 text-teal-400" />
                 <span>Identidad Protegida (Alias/Real)</span>
               </li>
-              <li className="flex items-center gap-1.5">
-                <Terminal className="w-3.5 h-3.5 text-teal-400" />
-                <span>Next.js • Prisma • Supabase</span>
-              </li>
             </ul>
           </div>
         </div>
@@ -67,11 +63,6 @@ export function Footer() {
         <div className="pt-8 border-t border-zinc-900 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-zinc-500 font-mono">
           <div>
             © {new Date().getFullYear()} Aion Neural. Desarrollado para la investigación y el debate científico de alta gama.
-          </div>
-          <div className="flex items-center gap-4">
-            <span>Vercel Deploy Ready</span>
-            <span>•</span>
-            <span>PostgreSQL Engine</span>
           </div>
         </div>
       </div>

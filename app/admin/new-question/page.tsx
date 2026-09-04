@@ -3,8 +3,9 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, ShieldAlert, Sparkles, PlusCircle } from "lucide-react";
+import { ShieldAlert, Sparkles, PlusCircle } from "lucide-react";
 import { AdminQuestionForm } from "./AdminQuestionForm";
+import { BackButton } from "@/components/BackButton";
 
 export const dynamic = "force-dynamic";
 
@@ -22,7 +23,7 @@ export default async function NewQuestionPage() {
           De acuerdo a las reglas estrictas de la plataforma, solo el Desarrollador / Administrador puede publicar nuevos artículos y preguntas oficiales de la TECD.
         </p>
         <Link
-          href="/"
+          href="/blog"
           className="inline-block px-4 py-2 rounded-full bg-zinc-800 text-xs font-semibold text-zinc-200 hover:bg-zinc-700 transition-colors"
         >
           Volver al Feed Principal
@@ -34,13 +35,7 @@ export default async function NewQuestionPage() {
   return (
     <div className="max-w-3xl mx-auto space-y-6">
       <div>
-        <Link
-          href="/"
-          className="inline-flex items-center gap-2 text-xs font-medium text-zinc-400 hover:text-white transition-colors"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          <span>Volver al feed</span>
-        </Link>
+        <BackButton label="Volver al feed" fallbackHref="/blog" />
       </div>
 
       <div className="glass-card rounded-3xl p-6 sm:p-10 border border-zinc-800/80 space-y-6">
