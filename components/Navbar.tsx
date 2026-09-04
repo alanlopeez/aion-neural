@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
 import { useTheme } from "./providers/ThemeProvider";
 import { RegisterModal } from "./auth/RegisterModal";
@@ -21,11 +22,14 @@ import {
 } from "lucide-react";
 
 export function Navbar() {
+  const pathname = usePathname();
   const { data: session } = useSession();
   const { theme, toggleTheme } = useTheme();
   const [showRegister, setShowRegister] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const [lang, setLang] = useState<"ES" | "EN">("ES");
+
+  if (pathname === "/") return null;
 
   const displayName =
     session?.user?.publicIdentityType === "ALIAS" && session?.user?.alias
@@ -37,7 +41,7 @@ export function Navbar() {
       <header className="sticky top-0 z-40 w-full glass-panel border-b border-zinc-800/80 transition-colors duration-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
           {/* Brand */}
-          <Link href="/" className="flex items-center gap-2.5 group">
+          <Link href="/blog" className="flex items-center gap-2.5 group">
             <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-teal-500 to-indigo-600 flex items-center justify-center text-white shadow-glow group-hover:scale-105 transition-transform duration-200">
               <Atom className="w-5 h-5 animate-pulse" />
             </div>
@@ -47,7 +51,7 @@ export function Navbar() {
                   TECD
                 </span>
                 <span className="text-[10px] uppercase font-mono tracking-widest px-1.5 py-0.5 rounded-full bg-teal-500/10 text-teal-400 border border-teal-500/20">
-                  Aion Neural
+                  Blog • Aion Neural
                 </span>
               </div>
               <span className="text-[11px] text-zinc-400 hidden sm:block">
@@ -60,6 +64,12 @@ export function Navbar() {
           <nav className="hidden md:flex items-center gap-1">
             <Link
               href="/"
+              className="px-3 py-1.5 text-xs font-semibold rounded-full text-zinc-400 hover:text-teal-300 hover:bg-zinc-800/60 transition-colors border border-zinc-800"
+            >
+              ← Aion Neural
+            </Link>
+            <Link
+              href="/blog"
               className="px-3.5 py-1.5 text-sm font-medium rounded-full text-zinc-300 hover:text-white hover:bg-zinc-800/60 transition-colors"
             >
               Artículos & Debates
